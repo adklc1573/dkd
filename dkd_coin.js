@@ -390,13 +390,13 @@ let url = {
         url : 'http://dkd-api.dysdk.com/money/withdraw_do?'+dkdbody,
         headers : JSON.parse(dkdhd),
        // body : dkdtxbody,}
-       body : {
+       body : `{
         "money":1,
         "type":2,
         "withdraw_card":null,
        "program":8,
        "is_special":1
-      },
+      }`,
 }
 $.post(url, async (err, resp, data) => {
         try {
