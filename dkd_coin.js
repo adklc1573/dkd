@@ -37,7 +37,6 @@ const dkdurl = process.env.dkdurl;
 const dkdhd = process.env.dkdhd;
 const dkdbody = process.env.dkdbody;
 const sckey = process.env.sckey;
-const tx ='{"money":0.5,"type":2,"withdraw_card":null,"program":8,"is_special":1}';
 
 let dkdtxurl = $.getdata('dkdtxurl')
 let dkdtxhd = $.getdata('dkdtxhd')
@@ -391,7 +390,7 @@ let url = {
         url : 'http://dkd-api.dysdk.com/money/withdraw_do?'+dkdbody,
         headers : JSON.parse(dkdhd),
        // body : dkdtxbody,}
-       body : tx,}
+       body : '{"money":1,"type":2,"withdraw_card":null,"program":8,"is_special":1}',}
       $.post(url, async (err, resp, data) => {
         try {
          //$.log(str.replace('headerInfo":"',""))
@@ -401,31 +400,6 @@ let url = {
 }
 if(result.status_code == 10020){
         console.log('提现回执:失败🚫 '+result.message)}
-        } catch (e) {
-          //$.logErr(e, resp);
-        } finally {
-          resolve()
-        }
-    },timeout)
-  })
-}
- 
-function dkdtx2(timeout = 0) {
-  return new Promise((resolve) => {
-
-let url = {
-        url : 'http://dkd-api.dysdk.com/money/withdraw_do?'+dkdbody,
-        headers : JSON.parse($.getdata('dkdtxhd')),
-        body : dkdtxbody,}
-      $.post(url, async (err, resp, data) => {
-        try {
-         //$.log(str.replace('headerInfo":"',""))
-    const result = JSON.parse(data)
-        if(result.status_code == 200){
-        console.log('提现回执2:成功🌝 '+result.message)
-}
-if(result.status_code == 10020){
-        console.log('提现回执2:失败🚫 '+result.message)}
         } catch (e) {
           //$.logErr(e, resp);
         } finally {
